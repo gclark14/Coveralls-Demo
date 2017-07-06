@@ -5,15 +5,16 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.junit.Assert.assertThat;
+import static sun.nio.cs.Surrogate.is;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CoverallsdemoApplicationTests {
 
-	CoverallsdemoApplication app = new CoverallsdemoApplication();
-
 	@Test
-	public void contextLoads() {
-	    app.main(new String[0]);
+	public void contextLoads(){
+	    CoverallsdemoApplication.main(new String[0]);
 	}
 
 }
