@@ -9,8 +9,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class CoverallsdemoApplicationTests {
 
+	CoverallsdemoApplication app = new CoverallsdemoApplication();
+
 	@Test
 	public void contextLoads() {
+	    app.main(new String[0]);
 	}
 
 }
