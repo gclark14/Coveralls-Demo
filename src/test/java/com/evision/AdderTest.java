@@ -21,4 +21,9 @@ public class AdderTest {
         assertThat(adder.add(2.0,2.0), is(4.0));
     }
 
+    @Test
+    public void add_should_return_concatenated_string_given_two_strings(){
+        assertThat(adder.add("foo","bar"), is("foobar"));
+    }
+
 }
