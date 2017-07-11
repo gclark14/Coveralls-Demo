@@ -1,4 +1,4 @@
-package com.evision;
+package com.evisions;
 
 /**
  * Created by gabe.clark on 7/6/17.

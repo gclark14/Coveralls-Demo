@@ -1,4 +1,4 @@
-package com.evision;
+package com.evisions;
 
 import org.junit.Test;
 
