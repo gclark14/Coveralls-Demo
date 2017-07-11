@@ -4,7 +4,13 @@ jdk:
 - oraclejdk8
 
 after_success:
-- ./gradlew jacocoTestReport coveralls
+  # upload unit tests
+  - ./gradlew clean test unitCoverageReport
+  - ./gradlew unitCoverageReport coveralls
+  # upload integration tests
+  - ./gradlew testIntegration integrationCoverageReport
+  - ./gradlew integrationCoverageReport coveralls
+
 
 after_failure:
-- ./gradlew clean check --debug
+  - ./gradlew clean check --debug
