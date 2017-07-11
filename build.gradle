@@ -41,7 +41,7 @@ sourceSets {
 		java.srcDir "src/test/java"
 	}
 	testIntegration {
-		java.srcDir "src/test-integration/java"
+		java.srcDir "src/test_integration/java"
 
 		compileClasspath += main.output + test.output
 		runtimeClasspath += main.output + test.output
@@ -91,6 +91,8 @@ task integrationCoverageReport(type: JacocoReport) {
 }
 
 jacocoTestReport {
+
+	executionData test, testIntegration
 
 	reports {
 		xml.enabled true
