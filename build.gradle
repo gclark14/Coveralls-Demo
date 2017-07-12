@@ -27,11 +27,45 @@ repositories {
 }
 
 dependencies {
+	compileOnly('org.projectlombok:lombok')
 	compile('org.springframework.boot:spring-boot-starter')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
+sourceSets {
+	main {
+		java.srcDir "src/main/java"
+		resources.srcDir "src/main/resources"
+	}
+	test {
+		java.srcDir "src/test/java"
+	}
+	testIntegration {
+		java.srcDir "src/test_integration/java"
+
+		compileClasspath += main.output + test.output
+		runtimeClasspath += main.output + test.output
+	}
+}
+
+configurations {
+	testIntegrationCompile.extendsFrom testCompile
+	testIntegrationRuntime.extendsFrom testRuntime
+}
+
+task testIntegration(type: Test) {
+	testClassesDir = sourceSets.testIntegration.output.classesDir
+	classpath = sourceSets.testIntegration.runtimeClasspath
+	outputs.upToDateWhen { false }
+}
+
+// if building the project, run integration tests if and only if all unit tests pass first
+testIntegration.mustRunAfter test
+
 jacocoTestReport {
+
+	executionData test, testIntegration
+
 	reports {
 		xml.enabled true
 		html.enabled false
